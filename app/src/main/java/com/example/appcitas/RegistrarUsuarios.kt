@@ -1,9 +1,13 @@
 package com.example.appcitas
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.AttributeSet
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
@@ -22,6 +26,7 @@ class RegistrarUsuarios : AppCompatActivity() {
     private val user by lazy { User() }
     private lateinit var database: FirebaseDatabase
     private lateinit var databaseReference: DatabaseReference
+    private lateinit var selectedOption: String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,7 +48,40 @@ class RegistrarUsuarios : AppCompatActivity() {
         binding.tvTengoCuenta.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
         }
+        seleccionarOpcion()
     }
+
+
+
+    private fun seleccionarOpcion() {
+        val options = listOf("doctor", "paciente")
+
+        // Verificar que el binding está inicializado correctamente
+        val adapter = ArrayAdapter(this@RegistrarUsuarios, android.R.layout.simple_spinner_item, options)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        binding.mySpinner.adapter = adapter
+
+        binding.mySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                // Obtener la opción seleccionada
+                selectedOption = parent?.getItemAtPosition(position).toString()
+
+                // Mostrar un mensaje con la opción seleccionada
+                Toast.makeText(this@RegistrarUsuarios, "Seleccionaste: $selectedOption", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Manejar el caso donde no se selecciona nada (opcional)
+            }
+        }
+    }
+
 
     private fun buscarImagen() {
         val intent = Intent(Intent.ACTION_GET_CONTENT)
@@ -117,6 +155,7 @@ class RegistrarUsuarios : AppCompatActivity() {
             user.apellido = apellido
             user.email = email
             user.password = password
+            user.rol = selectedOption
             user
         } else {
             null

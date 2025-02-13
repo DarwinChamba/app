@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/inicioFragment">
+
+    <fragment
+        android:id="@+id/inicioFragment"
+        android:name="com.example.appcitas.fragmen.InicioFragment"
+        android:label="fragment_inicio"
+        tools:layout="@layout/fragment_inicio" >
+        <action
+            android:id="@+id/action_inicioFragment_to_pacienteFragment"
+            app:destination="@id/pacienteFragment" />
+        <action
+            android:id="@+id/action_inicioFragment_to_doctorFragment"
+            app:destination="@id/doctorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/doctorFragment"
+        android:name="com.example.appcitas.fragmen.DoctorFragment"
+        android:label="fragment_doctor"
+        tools:layout="@layout/fragment_doctor" />
+    <fragment
+        android:id="@+id/pacienteFragment"
+        android:name="com.example.appcitas.fragmen.PacienteFragment"
+        android:label="fragment_paciente"
+        tools:layout="@layout/fragment_paciente" >
+        <action
+            android:id="@+id/action_pacienteFragment_to_citaFragment"
+            app:destination="@id/citaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/citaFragment"
+        android:name="com.example.appcitas.fragmen.CitaFragment"
+        android:label="fragment_cita"
+        tools:layout="@layout/fragment_cita" />
+</navigation>

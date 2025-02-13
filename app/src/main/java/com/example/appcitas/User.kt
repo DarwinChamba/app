@@ -6,7 +6,8 @@ data class User (
     var apellido:String,
     var email:String,
     var password:String,
-    var imagen:String
+    var imagen:String,
+    var rol:String
 ){
-    constructor():this("","","","","","")
+    constructor():this("","","","","","","")
 }
