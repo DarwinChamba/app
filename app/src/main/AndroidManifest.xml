@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -16,13 +17,22 @@
         android:theme="@style/Theme.AppCitas"
         tools:targetApi="31">
         <activity
+            android:name=".DayDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AppointmentsActiviry"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".GestionarCitas"
             android:exported="false" />
         <activity
             android:name=".RegistrarUsuarios"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Calendario"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
